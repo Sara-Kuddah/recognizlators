@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Recognizlator
+
+  Created by sara ayed albogami on 21/07/1444 AH.
+  
+*/
+
+
+"TRANSLATE IN ONE STEP" = "ترجم بخطوة واحدة";
+"Translate things quickly and accurately through your camera" = "ترجم الاشياء بسرعة ودقه من خلال كاميرتك";
+"TAKE OR UPLOAD PHOTO..." = "التقط او حمل صورة ";
+"Just take or upload photo of the object you want to recognize" = "ما عليك سوى التقاط أو تحميل صورة للعنصر الذي تريد التعرف عليه";
+"...AND THE TRANSLATION
+     HERE IT IS" = "والترجمه هاهي هنا";
+"Your photo will be instantly translated" = "سيتم ترجمة صورتك على الفور";
+"Get started" = "ابدأ";
+"Skip" = "تخطي";
+"English" = "اللغة الانجليزية";
+"Arabic" = "اللغة العربية";
+"Chinese" = "اللغة الصينية";
+"French" = "اللغة الفرنسية";
+"Italian" = "اللغة الايطالية";
+"Image categories:" = "فئة الصورة:";
+"Image categories: NA" = "فئة الصورة: غير متوفر";
+"Translated text:" = "النص المترجم:";
+"Choose Picture" = "اختر الصورة";
+"Select Photo" = "حدد الصورة";
+"Choose" = "اختر";
+"Photo Library" = "مكتبة الصور";
+"Camera" = "الكاميرا";
+"Cancel" = "الغاء";
+"Text Rec" = "التعرف على النص";
+"Image Rec" = "التعرف على الصور";
+"History" = "المحفوظات";
+"Image Recognition" = "التعرف على الصورة";
+"Selecte Language:" = "اختيار اللغة:";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
