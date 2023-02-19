@@ -13,7 +13,7 @@ struct RecognizlatorApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnBoardingView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

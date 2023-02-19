@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import UIKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -14,8 +15,12 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
+            
             let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            newItem.translateText = "text"
+            newItem.image = UIImage( systemName: "text.below.photo")
+            newItem.time = Date()
+            
         }
         do {
             try viewContext.save()
