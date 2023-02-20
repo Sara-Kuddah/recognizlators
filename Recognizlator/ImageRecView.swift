@@ -29,6 +29,7 @@ struct ImageRecView: View {
      NSLocalizedString("Chinese", comment: ""),
      NSLocalizedString("French", comment: ""),
      NSLocalizedString("Italian", comment: "")]
+    var synthVM = SynthViewModel()
     
     var body: some View {
         
@@ -171,7 +172,13 @@ struct ImageRecView: View {
                 HStack{
                     
                     Text("Translated text:")
+                    // 1
                     Text(classificationLabel)
+                        .onChange(of: didchange) { newValue in
+                            //synthVM
+                            synthVM.speak(text: classificationLabel)
+                        }
+                        
                         
                 }.font(Font.custom("SF Pro", size: 22))
                     
@@ -195,13 +202,16 @@ struct ImageRecView: View {
                     if image != nil {
                         classifier?.classify(self.image!) {
                             result in
-                                self.classificationLabel = result
+                            //2
+                            self.classificationLabel = result
+                            didchange.toggle()
                             isHideText = true
                         }
                     }
                 }
         }
     }
+    @State var didchange = false
 }
 
 struct ImageRecView_Previews: PreviewProvider {
@@ -219,3 +229,33 @@ struct ImageRecView_Previews: PreviewProvider {
 }
 
  
+import AVKit
+
+class SynthViewModel: NSObject {
+  private var speechSynthesizer = AVSpeechSynthesizer()
+  
+  override init() {
+    super.init()
+    self.speechSynthesizer.delegate = self
+  }
+  
+  func speak(text: String) {
+    let utterance = AVSpeechUtterance(string: text)
+    speechSynthesizer.speak(utterance)
+  }
+}
+
+extension SynthViewModel: AVSpeechSynthesizerDelegate {
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+    print("started")
+  }
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
+    print("paused")
+  }
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {}
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {}
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {}
+  func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+    print("finished")
+  }
+}
