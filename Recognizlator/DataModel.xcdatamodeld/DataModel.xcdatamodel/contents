@@ -5,5 +5,6 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <attribute name="result" optional="YES" attributeType="String"/>
+        <attribute name="translatedText" optional="YES" attributeType="String"/>
     </entity>
 </model>

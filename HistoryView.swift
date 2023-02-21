@@ -11,8 +11,11 @@ import CoreData
 
 struct HistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
-   
-    @FetchRequest(entity: History.entity(), sortDescriptors: []) var data: FetchedResults<History>
+//    @FetchRequest(entity: History.entity(), sortDescriptors: []) var data: FetchedResults<History>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \History.id, ascending: true)],
+    animation: .default)
+    private var data: FetchedResults<History>
 
     func createImage(_ value: Data) -> Image {
         let songArtwork: UIImage = UIImage(data: value) ?? UIImage()
@@ -21,13 +24,18 @@ struct HistoryView: View {
     var body: some View {
         NavigationView{
             List{
-                ForEach(data, id: \.id) { item in
+                ForEach(data) { item in
+                    
                     VStack {
                         HStack{
                         createImage(item.picture as! Data)
                             .resizable()
                             .frame(width: 50  , height: 50)
-                        Text(item.result ?? "Uknown")
+                            //*
+                            VStack{
+                                Text(item.result ?? "Uknown")
+                                Text(item.translatedText ?? "Uknown")
+                            }
                             
                         }
                     }

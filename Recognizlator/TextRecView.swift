@@ -212,7 +212,7 @@ struct TextRecView: View {
                         classifier?.classify(self.image!) {
                             result in
                                 self.classificationLabel = result
-                            handleData(picture: self.image, result: result)
+                            handleData(picture: self.image, result: result, translatedText: "translatedText")
                             isHideText = true
                         }
                     }
@@ -220,7 +220,7 @@ struct TextRecView: View {
         }
         
     }
-    func handleData(picture: UIImage?, result: String) {
+    func handleData(picture: UIImage?, result: String, translatedText: String) {
         let context = PersistenceController.shared.container.viewContext
         let newHistory = History(context: context)
         newHistory.date = Date()
