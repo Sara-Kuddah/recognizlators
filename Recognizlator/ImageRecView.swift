@@ -216,12 +216,30 @@ struct ImageRecView: View {
                             self.classificationLabel = result
                             didchange.toggle()
                             isHideText = true
+                            handleData(picture: self.image, result: result)
                         }
                     }
                 }
         }
     }
     @State var didchange = false
+    
+    func handleData(picture: UIImage?, result: String) {
+        let context = PersistenceController.shared.container.viewContext
+        let newHistory = History(context: context)
+        newHistory.date = Date()
+        
+        let imageData = picture?.jpegData(compressionQuality: 1.0)
+            newHistory.picture = imageData
+            
+        
+        newHistory.result = result
+        
+        PersistenceController.shared.save()
+       
+        
+        
+   }
 }
 
 struct ImageRecView_Previews: PreviewProvider {

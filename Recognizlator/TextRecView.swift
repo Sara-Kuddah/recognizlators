@@ -228,7 +228,7 @@ struct TextRecView: View {
         //let uiImage = UIImage(cgImage: picture)
         
         // Compress the UIImage to a Data object
-        let imageData = picture?.jpegData(compressionQuality: 1.0) 
+        let imageData = picture?.jpegData(compressionQuality: 1.0)
             newHistory.picture = imageData
             
         
