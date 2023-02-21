@@ -151,8 +151,22 @@ struct ImageRecView: View {
                     .fontWeight(.regular)
                     .font(.system(size: 40))
                     .foregroundColor(Color("CusColor"))
-                }
                     
+                    
+                    Button{
+                        didchange.toggle()
+                    } label: {
+                        Image(systemName: "speaker.wave.2.circle.fill")
+                        .onChange(of: didchange) { newValue in
+                            //synthVM
+                            synthVM.speak(text: classificationLabel)
+                    }.fontWeight(.regular)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("CusColor"))
+                        
+                    }.opacity(isHideText ? 1.0 : 0.0 )
+                }
+     
                 .actionSheet(isPresented:$ishownhome ){
                         ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
                             .default(Text("Photo Library")) {
@@ -167,19 +181,15 @@ struct ImageRecView: View {
                             },
                             .cancel()
                         ])
-                    }
+                    }.opacity(isHideText ? 1.0 : 0.0 )
                 
                 HStack{
                     
                     Text("Translated text:")
                     // 1
                     Text(classificationLabel)
-                        .onChange(of: didchange) { newValue in
-                            //synthVM
-                            synthVM.speak(text: classificationLabel)
-                        }
-                        
-                        
+                    
+                
                 }.font(Font.custom("SF Pro", size: 22))
                     
       
