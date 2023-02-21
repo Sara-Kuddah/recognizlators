@@ -13,6 +13,8 @@ struct RecognizlatorApp: App {
 
     var body: some Scene {
         WindowGroup {
+           
+            
             OnBoardingView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
