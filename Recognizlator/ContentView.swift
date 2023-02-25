@@ -22,7 +22,7 @@ struct ContentView: View {
                 case .textRec:
                     TextRecView()
                 case .History:
-                    ImageRecView()
+                    HistoryView()
                 }
             }
 //            Spacer()

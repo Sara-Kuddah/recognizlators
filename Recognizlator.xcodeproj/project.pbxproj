@@ -17,7 +17,6 @@
 		42D197F229993A67009880F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D197F129993A67009880F1 /* Assets.xcassets */; };
 		42D197F529993A67009880F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D197F429993A67009880F1 /* Preview Assets.xcassets */; };
 		42D197F729993A67009880F1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D197F629993A67009880F1 /* Persistence.swift */; };
-		42D197FA29993A67009880F1 /* Recognizlator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42D197F829993A67009880F1 /* Recognizlator.xcdatamodeld */; };
 		42D1980429993A68009880F1 /* RecognizlatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1980329993A68009880F1 /* RecognizlatorTests.swift */; };
 		42D1980E29993A68009880F1 /* RecognizlatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1980D29993A68009880F1 /* RecognizlatorUITests.swift */; };
 		42D1981029993A68009880F1 /* RecognizlatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1980F29993A68009880F1 /* RecognizlatorUITestsLaunchTests.swift */; };
@@ -30,6 +29,8 @@
 		42D1982B2999569F009880F1 /* tabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1982A2999569F009880F1 /* tabBarItem.swift */; };
 		42D1982E299957CA009880F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42D19830299957CA009880F1 /* Localizable.strings */; };
 		42F9B14A299B6B28001F0134 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */; };
+		77643E6729A4AADC00785AA9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77643E6629A4AADC00785AA9 /* HistoryView.swift */; };
+		77D470B829A4B44500E45767 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77643E6829A4ABAD00785AA9 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,6 @@
 		42D197F129993A67009880F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42D197F429993A67009880F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		42D197F629993A67009880F1 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		42D197F929993A67009880F1 /* Recognizlator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Recognizlator.xcdatamodel; sourceTree = "<group>"; };
 		42D197FF29993A68009880F1 /* RecognizlatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecognizlatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D1980329993A68009880F1 /* RecognizlatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizlatorTests.swift; sourceTree = "<group>"; };
 		42D1980929993A68009880F1 /* RecognizlatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecognizlatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +77,8 @@
 		42D1982A2999569F009880F1 /* tabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarItem.swift; sourceTree = "<group>"; };
 		42D19831299957CE009880F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = SOURCE_ROOT; };
+		77643E6629A4AADC00785AA9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		77643E6929A4ABAD00785AA9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		42D197E129993A65009880F1 = {
 			isa = PBXGroup;
 			children = (
+				77643E6629A4AADC00785AA9 /* HistoryView.swift */,
 				38CEC24729A21C6E0046DB2F /* SpeechRecognizer.swift */,
 				38CEC24929A21CD20046DB2F /* MeetingView.swift */,
 				42D197EC29993A66009880F1 /* Recognizlator */,
@@ -129,6 +132,7 @@
 		42D197EC29993A66009880F1 /* Recognizlator */ = {
 			isa = PBXGroup;
 			children = (
+				77643E6829A4ABAD00785AA9 /* DataModel.xcdatamodeld */,
 				38CEC24629A21B320046DB2F /* Info.plist */,
 				42D197ED29993A66009880F1 /* RecognizlatorApp.swift */,
 				42D197EF29993A66009880F1 /* ContentView.swift */,
@@ -142,7 +146,6 @@
 				42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */,
 				42D197F129993A67009880F1 /* Assets.xcassets */,
 				42D197F629993A67009880F1 /* Persistence.swift */,
-				42D197F829993A67009880F1 /* Recognizlator.xcdatamodeld */,
 				42D197F329993A67009880F1 /* Preview Content */,
 				42D19830299957CA009880F1 /* Localizable.strings */,
 			);
@@ -314,8 +317,8 @@
 				4263E36829A0E99400ACBC8D /* TextRecView.swift in Sources */,
 				42D1982129994CCD009880F1 /* ImageRecView.swift in Sources */,
 				42D197F729993A67009880F1 /* Persistence.swift in Sources */,
+				77D470B829A4B44500E45767 /* DataModel.xcdatamodeld in Sources */,
 				42D1982529995608009880F1 /* OnBoardingView.swift in Sources */,
-				42D197FA29993A67009880F1 /* Recognizlator.xcdatamodeld in Sources */,
 				38CEC24829A21C6E0046DB2F /* SpeechRecognizer.swift in Sources */,
 				42D197F029993A66009880F1 /* ContentView.swift in Sources */,
 				42D1982329994E8C009880F1 /* ImagePicker.swift in Sources */,
@@ -325,6 +328,7 @@
 				42D1982B2999569F009880F1 /* tabBarItem.swift in Sources */,
 				4263E36629A0E22A00ACBC8D /* History.swift in Sources */,
 				42F9B14A299B6B28001F0134 /* MobileNetV2.mlmodel in Sources */,
+				77643E6729A4AADC00785AA9 /* HistoryView.swift in Sources */,
 				42D197EE29993A66009880F1 /* RecognizlatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,7 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recognizlator/Preview Content\"";
-				DEVELOPMENT_TEAM = VYB73XD4WM;
+				DEVELOPMENT_TEAM = U7539R3954;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recognizlator/Info.plist;
@@ -528,7 +532,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recognizlator/Preview Content\"";
-				DEVELOPMENT_TEAM = VYB73XD4WM;
+				DEVELOPMENT_TEAM = U7539R3954;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recognizlator/Info.plist;
@@ -671,13 +675,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		42D197F829993A67009880F1 /* Recognizlator.xcdatamodeld */ = {
+		77643E6829A4ABAD00785AA9 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				42D197F929993A67009880F1 /* Recognizlator.xcdatamodel */,
+				77643E6929A4ABAD00785AA9 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 42D197F929993A67009880F1 /* Recognizlator.xcdatamodel */;
-			path = Recognizlator.xcdatamodeld;
+			currentVersion = 77643E6929A4ABAD00785AA9 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

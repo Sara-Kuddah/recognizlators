@@ -3,7 +3,8 @@
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="Transformable" customClassName="UIKit.UIImage"/>
-        <attribute name="result" optional="YES" attributeType="Date" defaultDateTimeInterval="698408580" usesScalarValueType="NO"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <attribute name="result" optional="YES" attributeType="String"/>
+        <attribute name="translatedText" optional="YES" attributeType="String"/>
     </entity>
 </model>
