@@ -28,6 +28,13 @@
 		42D1982B2999569F009880F1 /* tabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1982A2999569F009880F1 /* tabBarItem.swift */; };
 		42D1982E299957CA009880F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42D19830299957CA009880F1 /* Localizable.strings */; };
 		42F9B14A299B6B28001F0134 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */; };
+		4D6C326F29AA9A91005C80B1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C326E29AA9A91005C80B1 /* Model.swift */; };
+		4D6C327329AA9B81005C80B1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327229AA9B81005C80B1 /* ViewModel.swift */; };
+		4D6C327529AA9BA5005C80B1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327429AA9BA5005C80B1 /* NetworkMonitor.swift */; };
+		4D6C327829AA9C52005C80B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327729AA9C52005C80B1 /* MainView.swift */; };
+		4D6C327A29AA9C9E005C80B1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327929AA9C9E005C80B1 /* HomeView.swift */; };
+		4D6C327C29AA9D28005C80B1 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327B29AA9D28005C80B1 /* StarView.swift */; };
+		4D6C327E29AA9D4C005C80B1 /* LanguagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6C327D29AA9D4C005C80B1 /* LanguagesList.swift */; };
 		77643E6729A4AADC00785AA9 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77643E6629A4AADC00785AA9 /* HistoryView.swift */; };
 		77D470B829A4B44500E45767 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77643E6829A4ABAD00785AA9 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -75,6 +82,13 @@
 		42D1982A2999569F009880F1 /* tabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarItem.swift; sourceTree = "<group>"; };
 		42D19831299957CE009880F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = SOURCE_ROOT; };
+		4D6C326E29AA9A91005C80B1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4D6C327229AA9B81005C80B1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4D6C327429AA9BA5005C80B1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		4D6C327729AA9C52005C80B1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4D6C327929AA9C9E005C80B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4D6C327B29AA9D28005C80B1 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
+		4D6C327D29AA9D4C005C80B1 /* LanguagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesList.swift; sourceTree = "<group>"; };
 		77643E6629A4AADC00785AA9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		77643E6929A4ABAD00785AA9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +121,9 @@
 		42D197E129993A65009880F1 = {
 			isa = PBXGroup;
 			children = (
+				4D6C327629AA9C23005C80B1 /* Views */,
+				4D6C327129AA9B64005C80B1 /* ViewModels */,
+				4D6C327029AA9B48005C80B1 /* Models */,
 				77643E6629A4AADC00785AA9 /* HistoryView.swift */,
 				38CEC24729A21C6E0046DB2F /* SpeechRecognizer.swift */,
 				38CEC24929A21CD20046DB2F /* MeetingView.swift */,
@@ -175,6 +192,34 @@
 				42D1980F29993A68009880F1 /* RecognizlatorUITestsLaunchTests.swift */,
 			);
 			path = RecognizlatorUITests;
+			sourceTree = "<group>";
+		};
+		4D6C327029AA9B48005C80B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4D6C326E29AA9A91005C80B1 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4D6C327129AA9B64005C80B1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4D6C327229AA9B81005C80B1 /* ViewModel.swift */,
+				4D6C327429AA9BA5005C80B1 /* NetworkMonitor.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4D6C327629AA9C23005C80B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D6C327729AA9C52005C80B1 /* MainView.swift */,
+				4D6C327929AA9C9E005C80B1 /* HomeView.swift */,
+				4D6C327B29AA9D28005C80B1 /* StarView.swift */,
+				4D6C327D29AA9D4C005C80B1 /* LanguagesList.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,20 +355,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				38CEC24A29A21CD20046DB2F /* MeetingView.swift in Sources */,
+				4D6C327829AA9C52005C80B1 /* MainView.swift in Sources */,
 				4263E36829A0E99400ACBC8D /* TextRecView.swift in Sources */,
 				42D1982129994CCD009880F1 /* ImageRecView.swift in Sources */,
 				42D197F729993A67009880F1 /* Persistence.swift in Sources */,
+				4D6C327A29AA9C9E005C80B1 /* HomeView.swift in Sources */,
 				77D470B829A4B44500E45767 /* DataModel.xcdatamodeld in Sources */,
 				42D1982529995608009880F1 /* OnBoardingView.swift in Sources */,
+				4D6C327C29AA9D28005C80B1 /* StarView.swift in Sources */,
+				4D6C327E29AA9D4C005C80B1 /* LanguagesList.swift in Sources */,
 				38CEC24829A21C6E0046DB2F /* SpeechRecognizer.swift in Sources */,
 				42D197F029993A66009880F1 /* ContentView.swift in Sources */,
 				42D1982329994E8C009880F1 /* ImagePicker.swift in Sources */,
+				4D6C326F29AA9A91005C80B1 /* Model.swift in Sources */,
 				42D1982929995686009880F1 /* TabBarItemView.swift in Sources */,
+				4D6C327329AA9B81005C80B1 /* ViewModel.swift in Sources */,
 				42D1981D29994548009880F1 /* VisionClassifier.swift in Sources */,
 				42D1982729995670009880F1 /* TabBarView.swift in Sources */,
 				42D1982B2999569F009880F1 /* tabBarItem.swift in Sources */,
 				4263E36629A0E22A00ACBC8D /* History.swift in Sources */,
 				42F9B14A299B6B28001F0134 /* MobileNetV2.mlmodel in Sources */,
+				4D6C327529AA9BA5005C80B1 /* NetworkMonitor.swift in Sources */,
 				77643E6729A4AADC00785AA9 /* HistoryView.swift in Sources */,
 				42D197EE29993A66009880F1 /* RecognizlatorApp.swift in Sources */,
 			);
