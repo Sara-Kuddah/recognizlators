@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1098F7DA29A225530021F641 /* texttospeech in Resources */ = {isa = PBXBuildFile; fileRef = 1098F7D929A225520021F641 /* texttospeech */; };
 		38CEC24829A21C6E0046DB2F /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CEC24729A21C6E0046DB2F /* SpeechRecognizer.swift */; };
 		38CEC24A29A21CD20046DB2F /* MeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CEC24929A21CD20046DB2F /* MeetingView.swift */; };
 		4263E36629A0E22A00ACBC8D /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4263E36529A0E22A00ACBC8D /* History.swift */; };
@@ -51,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1098F7D929A225520021F641 /* texttospeech */ = {isa = PBXFileReference; lastKnownFileType = folder; name = texttospeech; path = ../../../Desktop/texttospeech/texttospeech; sourceTree = "<group>"; };
 		38CEC24629A21B320046DB2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		38CEC24729A21C6E0046DB2F /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		38CEC24929A21CD20046DB2F /* MeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingView.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			children = (
 				42D1980D29993A68009880F1 /* RecognizlatorUITests.swift */,
 				42D1980F29993A68009880F1 /* RecognizlatorUITestsLaunchTests.swift */,
-				1098F7D929A225520021F641 /* texttospeech */,
 			);
 			path = RecognizlatorUITests;
 			sourceTree = "<group>";
@@ -302,7 +299,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1098F7DA29A225530021F641 /* texttospeech in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
