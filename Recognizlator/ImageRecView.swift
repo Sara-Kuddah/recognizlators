@@ -47,7 +47,8 @@ struct ImageRecView: View {
     //MARK: - Header
     let screen = UIScreen.main.bounds
     // end for translate
-    @ViewBuilder
+    //to present translation and update it
+    @State private var translationText: String = ""
     
     var body: some View {
         
@@ -199,7 +200,9 @@ struct ImageRecView: View {
                     HStack{
                         
                       Button{
+                        translationText = ""
                         ishownhome.toggle()
+                        
                     } label: {
                         Image(systemName: "arrow.counterclockwise.circle.fill")
                         
@@ -227,7 +230,7 @@ struct ImageRecView: View {
                         // Translate button: passes input to translation API
                         Button(action:{
                             takeInput(text: classificationLabel)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() ) {
                                 if !viewModel.input.isEmpty {
                                     // Calls API translate function to retrieve translation
                                     ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
@@ -237,6 +240,7 @@ struct ImageRecView: View {
                                     
                                 }
                             }
+                            translationText = viewModel.translation
                         },label: {
                             
                             Text("Translate")
@@ -271,7 +275,7 @@ struct ImageRecView: View {
                     // 1
                    // Text(classificationLabel)
                     //translate result
-                        Text(viewModel.translation)
+                    Text(translationText)
                         Spacer(minLength: 15)
                        
                     //.padding(.horizontal)
@@ -398,9 +402,12 @@ class SynthViewModel: NSObject {
     super.init()
     self.speechSynthesizer.delegate = self
   }
-  
-  func speak(text: String) {
-    let utterance = AVSpeechUtterance(string: text)
+  // ممكن تضيفين متغير ياخذ الللغه من الفيو مثال , code: String في الفانكشن اللي تحت
+    func speak(text: String) {
+    let utterance = AVSpeechUtterance(string: "أهلا و سهلا")
+      utterance.rate = AVSpeechUtteranceDefaultSpeechRate;
+      utterance.voice = AVSpeechSynthesisVoice(language: "ar-SA")
+      print(AVSpeechSynthesisVoice.speechVoices())
     speechSynthesizer.speak(utterance)
   }
 }
@@ -420,3 +427,21 @@ extension SynthViewModel: AVSpeechSynthesizerDelegate {
   }
 }
 //
+
+//let speaker = AVSpeechSynthesizer()
+//    let dialogue = AVSpeechUtterance(string: "Hello I am clearly a man")
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//
+//    @IBAction func speakText(sender: AnyObject) {
+//
+//        dialogue.rate = AVSpeechUtteranceDefaultSpeechRate;
+//        dialogue.voice = AVSpeechSynthesisVoice(language: "en-gb")
+//
+//        guard speaker.isSpeaking else
+//        {
+//            speaker.speak(dialogue)
+//            return
+//        }

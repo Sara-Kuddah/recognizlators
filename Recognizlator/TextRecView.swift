@@ -40,6 +40,8 @@ struct TextRecView: View {
     func takeInput(text : String){
         viewModel.input = text
     }
+    //to present translation and update it
+    @State private var translationText: String = ""
     // Instances of objects
     @State var viewedLanguages = ViewedLanguages()
     @State var translation = Translation()
@@ -238,7 +240,9 @@ struct TextRecView: View {
                     HStack{
                         
                         Button{
+                            translationText = ""
                             ishownhome.toggle()
+                            
                         } label: {
                             Image(systemName: "arrow.counterclockwise.circle.fill")
                             
@@ -269,7 +273,7 @@ struct TextRecView: View {
                         // Translate button: passes input to translation API
                         Button(action:{
                             takeInput(text: classificationLabel)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() ) {
                                 if !viewModel.input.isEmpty {
                                     // Calls API translate function to retrieve translation
                                     ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
@@ -279,6 +283,7 @@ struct TextRecView: View {
                                     
                                 }
                             }
+                            translationText = viewModel.translation
                         },label: {
                             
                             Text("Translate")
@@ -313,7 +318,7 @@ struct TextRecView: View {
                     Text("Translated text:")
                    // Text(classificationLabel)
                     
-                    Text(viewModel.translation)
+                    Text(translationText)
                     Spacer(minLength: 15)
                   
                         
