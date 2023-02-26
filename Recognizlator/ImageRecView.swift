@@ -19,6 +19,7 @@ struct ImageRecView: View {
     @State private var inputlang = ""
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var classificationLabel: String = ""
+    @State private var count : Int = 0
     
     private let classifier = VisionClassifier(mlModel: MobileNetV2().model)
     
@@ -46,6 +47,8 @@ struct ImageRecView: View {
     //MARK: - Header
     let screen = UIScreen.main.bounds
     // end for translate
+    @ViewBuilder
+    
     var body: some View {
         
         NavigationView {
@@ -165,9 +168,7 @@ struct ImageRecView: View {
                                     HStack{
                                         
                                         Button() {
-                                            // open action sheet
                                             self.showSheet = true
-                                            
                                         }label: {
                                             
                                             Label("Upload a Picture", systemImage: "plus")
@@ -210,35 +211,46 @@ struct ImageRecView: View {
                 }
                     .padding()
                 
-                HStack{
-                    
+                VStack{
+                    //retake image
                     Button{
                         ishownhome.toggle()
                     } label: {
                         Image(systemName: "arrow.counterclockwise.circle.fill")
-                            
-                            
-                            
+                        
+                        
+                        
                     }
                     .fontWeight(.regular)
                     .font(.system(size: 40))
                     .foregroundColor(Color("CusColor"))
-                    
-                    
-                    Button{
-                        didchange.toggle()
-                    } label: {
-                        Image(systemName: "speaker.wave.2.circle.fill")
-                        .onChange(of: didchange) { newValue in
-                            //synthVM
-                            synthVM.speak(text: classificationLabel)
-                    }.fontWeight(.regular)
-                            .font(.system(size: 40))
-                            .foregroundColor(Color("CusColor"))
-                        
+                    HStack{
+                        //voice
+                       
+                        // Translate button: passes input to translation API
+                        Button(action:{
+                            takeInput(text: classificationLabel)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                if !viewModel.input.isEmpty {
+                                    // Calls API translate function to retrieve translation
+                                    ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
+                                        viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        },label: {
+                            
+                            Text("Translate")
+                            
+                        })
+                        .accentColor(.white)
+                        .font(Font.custom("SF Pro", size: 18))
+                        .frame(width: 150 , height: 50)
+                        .background(RoundedRectangle(cornerRadius: 15 ).fill(Color("CusColor")).opacity(1))
                     }
-                   
-                }
+                }.padding(.top, -10)
      
                 .actionSheet(isPresented:$ishownhome ){
                         ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
@@ -256,11 +268,28 @@ struct ImageRecView: View {
                         ])
                     }.opacity(isHideText ? 1.0 : 0.0 )
                 
-                HStack{
+                VStack{
                     
                     Text("Translated text:")
                     // 1
-                    Text(classificationLabel)
+                   // Text(classificationLabel)
+                    //translate result
+                    HStack{
+                        Text(viewModel.translation)
+                        Spacer(minLength: 15)
+                        Button{
+                            didchange.toggle()
+                        } label: {
+                            Image(systemName: "speaker.wave.2.circle.fill")
+                            .onChange(of: didchange) { newValue in
+                                //synthVM
+                                synthVM.speak(text: classificationLabel)
+                        }.fontWeight(.regular)
+                                .font(.system(size: 40))
+                                .foregroundColor(Color("CusColor"))
+                            
+                        }.opacity(isHideText ? 1.0 : 0.0 )
+                    }.padding(.horizontal)
                     
                 
                 }.font(Font.custom("SF Pro", size: 22))
@@ -276,83 +305,55 @@ struct ImageRecView: View {
                 //translate result
                 VStack () {
                     
-                    // Top text field: where user enters input to be translated
-    //                ZStack {
-    //                    TextField("Enter text", text: $viewModel.input)
-    //                        .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
-    //                        .padding(.horizontal, 20)
-    //                        .padding(.vertical, 10)
-    //                        .background(Color.white)
-    //                        .border(Color(UIColor.systemGray2), width: 1)
-    //                    HStack {
-    //                        Spacer()
-    //
-    //                        // Delete button: deletes any input entered by user
-    //                        Button(action: {
-    //                            viewModel.input = ""
-    //                        }, label: {
-    //                            Image(systemName: "multiply")
-    //                                .frame(width: 25, height: 25, alignment: .center)
-    //                                .font(.system(size: 24))
-    //                                .foregroundColor(.black)
-    //                        }).padding(.trailing, 15)
-    //                    }
-    //                }
-                    
-                    //TranslatedView(viewModel: viewModel )
-                    ZStack {
-                        // Second text field: where translation is displayed
-                        TextField("", text: $viewModel.translation)
-                            .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                            .background(Color.white)
-                            .border(Color(UIColor.systemGray2), width: 1)
-                            .disabled(true)
-                        HStack {
-                            Spacer()
-                            
-                            // Translate button: passes input to translation API
-                            Button(action: {
-                                takeInput(text: classificationLabel)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    if !viewModel.input.isEmpty {
-                                        // Calls API translate function to retrieve translation
-                                        ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
-                                            viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
-                                        }
-                                        
-                                        // Waits 4 seconds after button has been pressed before saving to Core Data
-                                        //                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                                        //                                    if !viewModel.translation.isEmpty {
-                                        //                                        translation.input = viewModel.input
-                                        //                                        translation.translation = viewModel.translation
-                                        ////                                        save(translation: translation)
-                                        //                                    }
-                                        //                                }
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "arrow.right")
-                                    .frame(width: 25, height: 25, alignment: .center)
-                                    .font(.system(size: 15, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .background(Color.blue)
-                                    .clipShape(Circle())
-                                
-                            }).padding(.trailing, 15)
-                        }
-                    }
+                   
+//                    ZStack {
+//                        // Second text field: where translation is displayed
+//
+//
+//                        TextField("", text: $viewModel.translation)
+//                            .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
+//                            .padding(.horizontal, 20)
+//                            .padding(.vertical, 10)
+//                            .background(Color.white)
+//                            .border(Color(UIColor.systemGray2), width: 1)
+//                            .disabled(true)
+//                        HStack {
+//                            Spacer()
+//
+//                            // Translate button: passes input to translation API
+//                            Button(action: {
+//                                takeInput(text: classificationLabel)
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                    if !viewModel.input.isEmpty {
+//                                        // Calls API translate function to retrieve translation
+//                                        ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
+//                                            viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
+//                                        }
+//
+//
+//                                    }
+//                                }
+//                            }, label: {
+//                                Image(systemName: "arrow.right")
+//                                    .frame(width: 25, height: 25, alignment: .center)
+//                                    .font(.system(size: 15, weight: .bold))
+//                                    .foregroundColor(.white)
+//                                    .background(Color.blue)
+//                                    .clipShape(Circle())
+//
+//                            }).padding(.trailing, 15)
+//                        }
+//                    }
                 }.sheet(isPresented: $isPresented) {
                     // Modal sheet of available languages
                     LanguagesList(viewedLanguages: $viewedLanguages, isPresented: $isPresented)
                 }
-            }
+            }.padding(.top, -50)
 
             .navigationBarTitle("Image Recognition")
             
             
-        }
+        }.padding(.top, -100)
         .sheet(isPresented: $showPhotoOptions) {
             ImagePicker(image: self.$image, isShown: self.$showPhotoOptions, sourceType: self.sourceType)
                 .onDisappear{
@@ -361,7 +362,7 @@ struct ImageRecView: View {
                             result in
                             //2
                             self.classificationLabel = result
-                            didchange.toggle()
+                           // didchange.toggle()
                             isHideText = true
                             handleData(picture: self.image, result: result)
                         }

@@ -17,7 +17,7 @@ class ViewModel: ObservableObject {
     @Published var sourceLang: String = "en"    // Language of input
     @Published var targetLang: String = "ar"    // Language of translation
 
-    let apiKey = "YOUR_API"
+    let apiKey = "5c518b29ebmshcf349ff9f44df5dp126a5fjsna03a7c573f90"
     
 //MARK: - Language List API Call
     func getLanguages(completion:@escaping (ListResults) -> ()) {
