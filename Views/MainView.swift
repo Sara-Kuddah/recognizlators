@@ -19,18 +19,16 @@ struct MainView: View {
     
     var body: some View {
         
-        TabView {
-            HomeView(viewModel: viewModel)
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
 
-//            StarView(savedTranslations: savedTranslations)
-            StarView()
-                .tabItem {
-                    Label("Saved", systemImage: "star.fill")
-                }
-        }
+            HomeView(viewModel: viewModel)
+
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+   
+    static var previews: some View {
+        MainView(viewModel: ViewModel())
     }
 }
 

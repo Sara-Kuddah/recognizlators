@@ -34,14 +34,17 @@ struct HomeView: View {
     
     // View Model
     @ObservedObject var viewModel: ViewModel
-    
+    // to take input from ML result
+    func takeInput(text : String){
+        viewModel.input = text
+    }
     // Instances of objects
     @State var viewedLanguages = ViewedLanguages()
     @State var translation = Translation()
     
     // Decides whether to present modal sheet or not
     @State var isPresented: Bool = false
-    
+    //MARK: - Header
     let screen = UIScreen.main.bounds
     
     var body: some View {
@@ -49,16 +52,17 @@ struct HomeView: View {
         VStack {
             
             //MARK: - Header
-            ZStack {
-                Rectangle()
-                    .frame(width: screen.width, height: screen.height * 0.075, alignment: .top)
-                    .foregroundColor(.blue)
-                Text("Google Translate Clone")
-                    .foregroundColor(.white)
-                    .bold()
-            }
+//            ZStack {
+//                Rectangle()
+//                    .frame(width: screen.width, height: screen.height * 0.075, alignment: .top)
+//                    .foregroundColor(.blue)
+//                Text("Google Translate Clone")
+//                    .foregroundColor(.white)
+//                    .bold()
+//            }
             
             //MARK: - Buttons
+            //LanguageButtonsView(viewModel: viewModel, isPresented: $isPresented)
             HStack {
                 
                 // First (left) button: English by default
@@ -111,31 +115,33 @@ struct HomeView: View {
             }
             
             //MARK: - Text Fields
+            
             VStack (spacing: -10) {
                 
                 // Top text field: where user enters input to be translated
-                ZStack {
-                    TextField("Enter text", text: $viewModel.input)
-                        .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .background(Color.white)
-                        .border(Color(UIColor.systemGray2), width: 1)
-                    HStack {
-                        Spacer()
-                        
-                        // Delete button: deletes any input entered by user
-                        Button(action: {
-                            viewModel.input = ""
-                        }, label: {
-                            Image(systemName: "multiply")
-                                .frame(width: 25, height: 25, alignment: .center)
-                                .font(.system(size: 24))
-                                .foregroundColor(.black)
-                        }).padding(.trailing, 15)
-                    }
-                }
+//                ZStack {
+//                    TextField("Enter text", text: $viewModel.input)
+//                        .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
+//                        .padding(.horizontal, 20)
+//                        .padding(.vertical, 10)
+//                        .background(Color.white)
+//                        .border(Color(UIColor.systemGray2), width: 1)
+//                    HStack {
+//                        Spacer()
+//
+//                        // Delete button: deletes any input entered by user
+//                        Button(action: {
+//                            viewModel.input = ""
+//                        }, label: {
+//                            Image(systemName: "multiply")
+//                                .frame(width: 25, height: 25, alignment: .center)
+//                                .font(.system(size: 24))
+//                                .foregroundColor(.black)
+//                        }).padding(.trailing, 15)
+//                    }
+//                }
                 
+                //TranslatedView(viewModel: viewModel )
                 ZStack {
                     // Second text field: where translation is displayed
                     TextField("", text: $viewModel.translation)
@@ -150,19 +156,22 @@ struct HomeView: View {
                         
                         // Translate button: passes input to translation API
                         Button(action: {
-                            if !viewModel.input.isEmpty {
-                                // Calls API translate function to retrieve translation
-                                ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
-                                    viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
-                                }
-                                
-                                // Waits 4 seconds after button has been pressed before saving to Core Data
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                                    if !viewModel.translation.isEmpty {
-                                        translation.input = viewModel.input
-                                        translation.translation = viewModel.translation
-//                                        save(translation: translation)
+                            takeInput(text: "Hi Sara")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                if !viewModel.input.isEmpty {
+                                    // Calls API translate function to retrieve translation
+                                    ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
+                                        viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
                                     }
+                                    
+                                    // Waits 4 seconds after button has been pressed before saving to Core Data
+                                    //                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    //                                    if !viewModel.translation.isEmpty {
+                                    //                                        translation.input = viewModel.input
+                                    //                                        translation.translation = viewModel.translation
+                                    ////                                        save(translation: translation)
+                                    //                                    }
+                                    //                                }
                                 }
                             }
                         }, label: {
@@ -219,10 +228,10 @@ struct HomeView: View {
             //
             //                }
             //            }.background(Color(UIColor.systemGray6).opacity(20))
-            //        }.sheet(isPresented: $isPresented) {
-            //            // Modal sheet of available languages
-            //            LanguagesList(viewedLanguages: $viewedLanguages, isPresented: $isPresented)
-            //        }
+                    .sheet(isPresented: $isPresented) {
+                        // Modal sheet of available languages
+                        LanguagesList(viewedLanguages: $viewedLanguages, isPresented: $isPresented)
+                    }
             //    }
             
             // Adds item to Core Data
@@ -270,3 +279,9 @@ struct HomeView: View {
         }
         
     }}
+struct HomeView_Previews: PreviewProvider {
+   
+    static var previews: some View {
+        HomeView(viewModel: ViewModel())
+    }
+}

@@ -13,7 +13,7 @@ struct HistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: History.entity(), sortDescriptors: []) var data: FetchedResults<History>
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \History.id, ascending: true)],
+        sortDescriptors: [],
     animation: .default)
     private var data: FetchedResults<History>
 
@@ -24,11 +24,11 @@ struct HistoryView: View {
     var body: some View {
         NavigationView{
             List{
-                ForEach(data) { item in
+                ForEach(data, id: \.self) { item in
                     
                     VStack {
                         HStack{
-                        createImage(item.picture as! Data)
+                        createImage(item.picture!)
                             .resizable()
                             .frame(width: 50  , height: 50)
                             //*
