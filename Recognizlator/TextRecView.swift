@@ -261,7 +261,7 @@ struct TextRecView: View {
                             Image(systemName: "speaker.wave.2.circle.fill")
                                 .onChange(of: didchange) { newValue in
                                     //synthVM
-                                    synthVM.speak(text: classificationLabel)
+                                    synthVM.speak(text: classificationLabel , code:viewModel.targetLang)
                                 }.fontWeight(.regular)
                                 .font(.system(size: 40))
                                 .foregroundColor(Color("CusColor"))

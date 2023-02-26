@@ -15,7 +15,7 @@ class ViewModel: ObservableObject {
     @Published var input: String = ""           // Text entered by user to translate
     @Published var translation: String = ""     // Translation of input
     @Published var sourceLang: String = "en"    // Language of input
-    @Published var targetLang: String = "ar"    // Language of translation
+    @Published var targetLang: String = "fr"    // Language of translation
 
     let apiKey = "your api"
     
@@ -49,7 +49,7 @@ class ViewModel: ObservableObject {
 
 //MARK: - Translation API Call
     func translate(for input: String, for sourceLang: String, for targetLang: String, completion:@escaping (TranslationResults) -> ()) {
-
+       
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
             "Accept-Encoding": "application/gzip",
@@ -82,9 +82,13 @@ class ViewModel: ObservableObject {
                     let results = try JSONDecoder().decode(TranslationResults.self, from: data!)
                     
                     DispatchQueue.main.async {
+                        print("targetLang \(targetLang)")
+                        self.targetLang = targetLang
+                        print("self.targetLang \(self.targetLang)")
                         self.translations = results.data.translations
                         completion(results)
                         print("translations \(self.translations)")
+                        
                     }
                 } catch {
                     print("RESULTS ERROR 1: \(error)")

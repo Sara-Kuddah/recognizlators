@@ -214,12 +214,15 @@ struct ImageRecView: View {
                     .foregroundColor(Color("CusColor"))
                     
                     Button{
+                        print("viewModel.targetLang \(viewModel.targetLang)")
                         didchange.toggle()
+                        
                     } label: {
                         Image(systemName: "speaker.wave.2.circle.fill")
                         .onChange(of: didchange) { newValue in
                             //synthVM
-                            synthVM.speak(text: classificationLabel)
+                            synthVM.speak(text: viewModel.translation , code:viewModel.targetLang)
+                                                 
                     }.fontWeight(.regular)
                             .font(.system(size: 40))
                             .foregroundColor(Color("CusColor"))
@@ -237,6 +240,8 @@ struct ImageRecView: View {
                                     // Calls API translate function to retrieve translation
                                     ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
                                         viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
+                                        viewModel.targetLang = viewedLanguages.secondCode
+                                        
                                     }
                                //     translationText = viewModel.translation
                                     
@@ -410,10 +415,12 @@ class SynthViewModel: NSObject {
     self.speechSynthesizer.delegate = self
   }
   // ممكن تضيفين متغير ياخذ الللغه من الفيو مثال , code: String في الفانكشن اللي تحت
-    func speak(text: String) {
-    let utterance = AVSpeechUtterance(string: "أهلا و سهلا")
+    func speak(text: String , code: String) {
+        print("code : \(code)")
+        print("text : \(text)")
+    let utterance = AVSpeechUtterance(string: text)
       utterance.rate = AVSpeechUtteranceDefaultSpeechRate;
-      utterance.voice = AVSpeechSynthesisVoice(language: "ar-SA")
+      utterance.voice = AVSpeechSynthesisVoice(language: code)
       print(AVSpeechSynthesisVoice.speechVoices())
     speechSynthesizer.speak(utterance)
   }
