@@ -48,7 +48,9 @@ struct ImageRecView: View {
     let screen = UIScreen.main.bounds
     // end for translate
     //to present translation and update it
-    @State private var translationText: String = ""
+    //@State private var translationText: String
+    @State private var coreDataPicture: UIImage? = UIImage(contentsOfFile: "AppIcon")
+    @State private var coreDataResult: String = ""
     
     var body: some View {
         
@@ -200,7 +202,7 @@ struct ImageRecView: View {
                     HStack{
                         
                       Button{
-                        translationText = ""
+                     //   translationText = ""
                         ishownhome.toggle()
                         
                     } label: {
@@ -230,17 +232,19 @@ struct ImageRecView: View {
                         // Translate button: passes input to translation API
                         Button(action:{
                             takeInput(text: classificationLabel)
-                            DispatchQueue.main.asyncAfter(deadline: .now() ) {
+//                            DispatchQueue.main.asyncAfter(deadline: .now() ) {
                                 if !viewModel.input.isEmpty {
                                     // Calls API translate function to retrieve translation
                                     ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
                                         viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
                                     }
+                               //     translationText = viewModel.translation
                                     
-                                    
-                                }
+//                                }
                             }
-                            translationText = viewModel.translation
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+                                handleData(picture: coreDataPicture, result: coreDataResult, translatedText: viewModel.translation)
+                            }
                         },label: {
                             
                             Text("Translate")
@@ -275,7 +279,7 @@ struct ImageRecView: View {
                     // 1
                    // Text(classificationLabel)
                     //translate result
-                    Text(translationText)
+                    Text(viewModel.translation)
                         Spacer(minLength: 15)
                        
                     //.padding(.horizontal)
@@ -352,7 +356,9 @@ struct ImageRecView: View {
                             self.classificationLabel = result
                            // didchange.toggle()
                             isHideText = true
-                            handleData(picture: self.image, result: result)
+                            coreDataPicture = self.image
+                            coreDataResult = result
+//                            handleData(picture: self.image, result: result, translatedText: viewModel.translation)
                         }
                     }
                 }
@@ -360,7 +366,7 @@ struct ImageRecView: View {
     }
     @State var didchange = false
     
-    func handleData(picture: UIImage?, result: String) {
+    func handleData(picture: UIImage?, result: String , translatedText: String) {
         let context = PersistenceController.shared.container.viewContext
         let newHistory = History(context: context)
         newHistory.date = Date()
@@ -370,6 +376,7 @@ struct ImageRecView: View {
             
         
         newHistory.result = result
+        newHistory.translatedText = translatedText
         
         PersistenceController.shared.save()
        

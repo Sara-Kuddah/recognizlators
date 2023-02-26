@@ -41,7 +41,7 @@ struct TextRecView: View {
         viewModel.input = text
     }
     //to present translation and update it
-    @State private var translationText: String = ""
+    //@State private var translationText: String = ""
     // Instances of objects
     @State var viewedLanguages = ViewedLanguages()
     @State var translation = Translation()
@@ -51,7 +51,8 @@ struct TextRecView: View {
     //MARK: - Header
     let screen = UIScreen.main.bounds
     // end for translate
-    
+    @State private var coreDataPicture: UIImage? = UIImage(contentsOfFile: "AppIcon")
+    @State private var coreDataResult: String = ""
     var body: some View {
         
         NavigationView {
@@ -240,7 +241,7 @@ struct TextRecView: View {
                     HStack{
                         
                         Button{
-                            translationText = ""
+                          //  translationText = ""
                             ishownhome.toggle()
                             
                         } label: {
@@ -273,17 +274,19 @@ struct TextRecView: View {
                         // Translate button: passes input to translation API
                         Button(action:{
                             takeInput(text: classificationLabel)
-                            DispatchQueue.main.asyncAfter(deadline: .now() ) {
+ 
                                 if !viewModel.input.isEmpty {
                                     // Calls API translate function to retrieve translation
                                     ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
                                         viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
                                     }
                                     
-                                    
-                                }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+                                        handleData(picture: coreDataPicture, result: coreDataResult, translatedText: viewModel.translation)
+                                    }
+                                
                             }
-                            translationText = viewModel.translation
+                           // translationText = viewModel.translation
                         },label: {
                             
                             Text("Translate")
@@ -318,7 +321,7 @@ struct TextRecView: View {
                     Text("Translated text:")
                    // Text(classificationLabel)
                     
-                    Text(translationText)
+                    Text(viewModel.translation)
                     Spacer(minLength: 15)
                   
                         
