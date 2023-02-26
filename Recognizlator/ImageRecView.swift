@@ -54,7 +54,7 @@ struct ImageRecView: View {
         NavigationView {
             
             VStack{
-                
+               
                 Text("Selecte Language:")
                     .font(Font.custom("SF Pro", size: 22))
                     .padding(.trailing,150)
@@ -108,36 +108,19 @@ struct ImageRecView: View {
                     }, label: {
                         Text(viewedLanguages.secondName)
                             .bold()
-                            .frame(width: 150, height: 40, alignment: .center)
+                           // .frame(width: 150, height: 40, alignment: .center)
                             .background(Color.white)
-                            .foregroundColor(.blue)
-                    }).pickerStyle(.menu)
-                        .accentColor(.black)
-                        .frame(width: 130 , height: 50)
+                            .foregroundColor(.black)
+                    }
+                    )
+                  
+                        .frame(width: 260 , height: 50)
                         .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                        .padding(.trailing,70)
                     Spacer()
+                    
                 }
-                // old butten
-//                HStack{
-//
-//                    Spacer()
-//
-//                        Picker("", selection: $inputlang){
-//                            ForEach(languages , id: \.self){ language in
-//                                Text(language)
-//
-//                                    .accessibilityLabel(Text(language))
-//                            }
-//
-//                        }
-//                        .pickerStyle(.menu)
-//                        .accentColor(.black)
-//                        .frame(width: 290 , height: 50)
-//                        .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
-//                        .padding(.trailing,50)
-//                    Spacer()
-//
-//                }
+               
                 
                 
                 ZStack{
@@ -213,17 +196,31 @@ struct ImageRecView: View {
                 
                 VStack{
                     //retake image
-                    Button{
+                    HStack{
+                        
+                      Button{
                         ishownhome.toggle()
                     } label: {
                         Image(systemName: "arrow.counterclockwise.circle.fill")
-                        
-                        
                         
                     }
                     .fontWeight(.regular)
                     .font(.system(size: 40))
                     .foregroundColor(Color("CusColor"))
+                    
+                    Button{
+                        didchange.toggle()
+                    } label: {
+                        Image(systemName: "speaker.wave.2.circle.fill")
+                        .onChange(of: didchange) { newValue in
+                            //synthVM
+                            synthVM.speak(text: classificationLabel)
+                    }.fontWeight(.regular)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("CusColor"))
+                        
+                    }
+                }.opacity(isHideText ? 1.0 : 0.0 )
                     HStack{
                         //voice
                        
@@ -268,30 +265,17 @@ struct ImageRecView: View {
                         ])
                     }.opacity(isHideText ? 1.0 : 0.0 )
                 
-                VStack{
-                    
+                HStack{
+                    Spacer()
                     Text("Translated text:")
                     // 1
                    // Text(classificationLabel)
                     //translate result
-                    HStack{
                         Text(viewModel.translation)
                         Spacer(minLength: 15)
-                        Button{
-                            didchange.toggle()
-                        } label: {
-                            Image(systemName: "speaker.wave.2.circle.fill")
-                            .onChange(of: didchange) { newValue in
-                                //synthVM
-                                synthVM.speak(text: classificationLabel)
-                        }.fontWeight(.regular)
-                                .font(.system(size: 40))
-                                .foregroundColor(Color("CusColor"))
-                            
-                        }.opacity(isHideText ? 1.0 : 0.0 )
-                    }.padding(.horizontal)
-                    
-                
+                       
+                    //.padding(.horizontal)
+//                Spacer()
                 }.font(Font.custom("SF Pro", size: 22))
                     
       
@@ -348,8 +332,8 @@ struct ImageRecView: View {
                     // Modal sheet of available languages
                     LanguagesList(viewedLanguages: $viewedLanguages, isPresented: $isPresented)
                 }
-            }.padding(.top, -50)
-
+            }.padding(.top, -30)
+            
             .navigationBarTitle("Image Recognition")
             
             
