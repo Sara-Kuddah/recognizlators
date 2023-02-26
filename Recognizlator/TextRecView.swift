@@ -63,121 +63,121 @@ struct TextRecView: View {
                 //new select language button
                 HStack(spacing:35){
                     
+                    
+                    // First (left) button: English by default
+                    Button(action: {
+                        // Passes to modal sheet that button 1 is being called
+                        viewedLanguages.selection = 1
+                        isPresented.toggle()
                         
-                        // First (left) button: English by default
-                        Button(action: {
-                            // Passes to modal sheet that button 1 is being called
-                            viewedLanguages.selection = 1
-                            isPresented.toggle()
-                            
-                        }, label: {
-                            Text(viewedLanguages.firstName)
-                                .font(.footnote.weight(.bold))
-                                .bold()
-                               .frame(width: 150, height: 40, alignment: .center)
-//                                .bold()
-//                                .frame(width: 150, height: 40, alignment: .center)
-//                                .background(Color.white)
-//                                .foregroundColor(.blue)
-                        }).pickerStyle(.menu)
-                            .accentColor(.black)
-                            .frame(width: 130 , height: 50)
-                            .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                    }, label: {
+                        Text(viewedLanguages.firstName)
+                            .font(.footnote.weight(.light))
+                            .bold()
+                        // .frame(width: 150, height: 40, alignment: .center)
+                        //                                .bold()
+                        //                                .frame(width: 150, height: 40, alignment: .center)
+                        //                                .background(Color.white)
+                        //                                .foregroundColor(.blue)
+                    }).pickerStyle(.menu)
+                        .accentColor(.black)
+                        .frame(width: 130 , height: 50)
+                        .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                    
+                    // Switch (middle) button: switches languages between first and second button
+                    Button(action: {
+                        let temp = viewedLanguages.firstName
+                        viewedLanguages.firstName = viewedLanguages.secondName
+                        viewedLanguages.secondName = temp
                         
-                        // Switch (middle) button: switches languages between first and second button
-                        Button(action: {
-                            let temp = viewedLanguages.firstName
-                            viewedLanguages.firstName = viewedLanguages.secondName
-                            viewedLanguages.secondName = temp
-                            
-                            let temp2 = viewedLanguages.firstCode
-                            viewedLanguages.firstCode = viewedLanguages.secondCode
-                            viewedLanguages.secondCode = temp2
-                            
-                            let temp3 = viewModel.input
-                            viewModel.input = viewModel.translation
-                            viewModel.translation = temp3
-                            
-                        }, label: {
-                            Image(systemName: "arrow.right.arrow.left")
-                                .foregroundColor(Color("CusColor"))
-                                .font(.system(size: 20))
-//                                .frame(width: 75, height: 40, alignment: .center)
-//                                .background(Color.white)
-//                                .foregroundColor(Color(UIColor.darkGray))
-                        })
+                        let temp2 = viewedLanguages.firstCode
+                        viewedLanguages.firstCode = viewedLanguages.secondCode
+                        viewedLanguages.secondCode = temp2
                         
-                        // Second (right) button: French by default
-                        Button(action: {
-                            // Passes to modal sheet that button 2 is being called
-                            viewedLanguages.selection = 2
-                            isPresented.toggle()
-                        }, label: {
-                            Text(viewedLanguages.secondName)
-                               // .accessibilityLabel(Text(language))
-                                .font(.footnote.weight(.bold))
-                                .bold()
-                               .frame(width: 150, height: 40, alignment: .center)
-//                                .background(Color.white)
-//                                .foregroundColor(.blue)
-                        }).pickerStyle(.menu)
-                            .accentColor(.black)
-                            .frame(width: 130 , height: 50)
-                            .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                        let temp3 = viewModel.input
+                        viewModel.input = viewModel.translation
+                        viewModel.translation = temp3
+                        
+                    }, label: {
+                        Image(systemName: "arrow.right.arrow.left")
+                            .foregroundColor(Color("CusColor"))
+                            .font(.system(size: 20))
+                        //                                .frame(width: 75, height: 40, alignment: .center)
+                        //                                .background(Color.white)
+                        //                                .foregroundColor(Color(UIColor.darkGray))
+                    })
+                    
+                    // Second (right) button: French by default
+                    Button(action: {
+                        // Passes to modal sheet that button 2 is being called
+                        viewedLanguages.selection = 2
+                        isPresented.toggle()
+                    }, label: {
+                        Text(viewedLanguages.secondName)
+                        // .accessibilityLabel(Text(language))
+                            .font(.footnote.weight(.bold))
+                            .bold()
+                        // .frame(width: 150, height: 40, alignment: .center)
+                        //                                .background(Color.white)
+                        //                                .foregroundColor(.blue)
+                    }).pickerStyle(.menu)
+                        .accentColor(.black)
+                        .frame(width: 130 , height: 50)
+                        .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
                     
                 }
                 //old select language button
-//                HStack(spacing:35){
-//
-//                    Picker("", selection: $inputlang){
-//                        ForEach(languages , id: \.self){ language in
-//                            Text(language)
-//
-//                                .accessibilityLabel(Text(language))
-//                                .font(.footnote.weight(.bold))
-//
-//                        }
-//                    }
-//
-//                    .pickerStyle(.menu)
-//                    .accentColor(.black)
-//                    .frame(width: 130 , height: 39)
-//                    .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
-//
-//                   // .labelsHidden()
-//
-//                    Button {
-//
-//                        //Swap between inputUnit And OutputUnit
-//                        swaplang = inputlang
-//                        inputlang = outputlang
-//                        outputlang = swaplang
-//
-//                    } label: {
-//                        Image(systemName: "arrow.left.arrow.right")
-//                            .foregroundColor(Color("CusColor"))
-//                            .font(.system(size: 20))
-//                    }.buttonStyle(.plain).accessibilityLabel(Text("Switch between 2 units you picked"))
-//
-//
-//                    Picker("", selection: $outputlang){
-//                        ForEach(languages , id: \.self){ language in
-//                            Text(language)
-//
-//                                .accessibilityLabel(Text(language))
-//                                .font(.footnote.weight(.bold))
-//
-//                        }
-//                    }
-//
-//                    .pickerStyle(.menu)
-//                    .accentColor(.black)
-//                    .frame(width: 130 , height: 39)
-//                    .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
-//                 //   .labelsHidden()
-//
-//                }
-//                .frame(width: 50)
+                //                HStack(spacing:35){
+                //
+                //                    Picker("", selection: $inputlang){
+                //                        ForEach(languages , id: \.self){ language in
+                //                            Text(language)
+                //
+                //                                .accessibilityLabel(Text(language))
+                //                                .font(.footnote.weight(.bold))
+                //
+                //                        }
+                //                    }
+                //
+                //                    .pickerStyle(.menu)
+                //                    .accentColor(.black)
+                //                    .frame(width: 130 , height: 39)
+                //                    .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                //
+                //                   // .labelsHidden()
+                //
+                //                    Button {
+                //
+                //                        //Swap between inputUnit And OutputUnit
+                //                        swaplang = inputlang
+                //                        inputlang = outputlang
+                //                        outputlang = swaplang
+                //
+                //                    } label: {
+                //                        Image(systemName: "arrow.left.arrow.right")
+                //                            .foregroundColor(Color("CusColor"))
+                //                            .font(.system(size: 20))
+                //                    }.buttonStyle(.plain).accessibilityLabel(Text("Switch between 2 units you picked"))
+                //
+                //
+                //                    Picker("", selection: $outputlang){
+                //                        ForEach(languages , id: \.self){ language in
+                //                            Text(language)
+                //
+                //                                .accessibilityLabel(Text(language))
+                //                                .font(.footnote.weight(.bold))
+                //
+                //                        }
+                //                    }
+                //
+                //                    .pickerStyle(.menu)
+                //                    .accentColor(.black)
+                //                    .frame(width: 130 , height: 39)
+                //                    .background(RoundedRectangle(cornerRadius: 15).strokeBorder(Color("CusColor")))
+                //                 //   .labelsHidden()
+                //
+                //                }
+                //                .frame(width: 50)
                 
                 
                 ZStack{
@@ -189,7 +189,7 @@ struct TextRecView: View {
                             self.showSheet = true
                             
                         }label: {
-    Label("Upload a Picture", systemImage: "plus")
+                            Label("Upload a Picture", systemImage: "plus")
                             
                         }
                         .accentColor(.white)
@@ -199,71 +199,99 @@ struct TextRecView: View {
                         
                         
                     }
-                  
-                        RoundedRectangle(cornerRadius: 15)
+                    
+                    RoundedRectangle(cornerRadius: 15)
                         .stroke(Color("CusColor"), style: StrokeStyle(lineWidth: 2, dash: [5]))
-                             .overlay(
-                                Group {
-                                    if image != nil {
-                                        Image(uiImage: image!)
-                                            .resizable()
-                                          //  .scaledToFit()
-                                            .frame(width: 350, height:360)
-                                            .cornerRadius(15)
-                                    }
-                                })
-                             .frame(width: 350, height:360)
+                        .overlay(
+                            Group {
+                                if image != nil {
+                                    Image(uiImage: image!)
+                                        .resizable()
+                                    //  .scaledToFit()
+                                        .frame(width: 350, height:360)
+                                        .cornerRadius(15)
+                                }
+                            })
+                        .frame(width: 350, height:360)
                 }
-                  
-                    .actionSheet(isPresented: $showSheet) {
-                        
-                        ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
-                            .default(Text("Photo Library")) {
-                                // open photo library
-                                self.showPhotoOptions = true
-                                self.sourceType = .photoLibrary
-                            },
-                            .default(Text("Camera")) {
-                                // open camera
-                                self.showPhotoOptions = true
-                                self.sourceType = .camera
-                            },
-                            .cancel()
-                        ])
-                        
-                }
-                    .padding()
                 
-                HStack{
+                .actionSheet(isPresented: $showSheet) {
                     
-                    Button{
-                        ishownhome.toggle()
-                    } label: {
-                        Image(systemName: "arrow.counterclockwise.circle.fill")
-                            
-                            
-                            
-                    }
-                    .fontWeight(.regular)
-                    .font(.system(size: 40))
-                    .foregroundColor(Color("CusColor"))
+                    ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
+                        .default(Text("Photo Library")) {
+                            // open photo library
+                            self.showPhotoOptions = true
+                            self.sourceType = .photoLibrary
+                        },
+                        .default(Text("Camera")) {
+                            // open camera
+                            self.showPhotoOptions = true
+                            self.sourceType = .camera
+                        },
+                        .cancel()
+                    ])
                     
-                    
-                    Button{
-                        didchange.toggle()
-                    } label: {
-                        Image(systemName: "speaker.wave.2.circle.fill")
-                        .onChange(of: didchange) { newValue in
-                            //synthVM
-                            synthVM.speak(text: classificationLabel)
-                    }.fontWeight(.regular)
-                            .font(.system(size: 40))
-                            .foregroundColor(Color("CusColor"))
-                        
-                    }
-                 
                 }
+                .padding()
+                VStack{
                     
+                    HStack{
+                        
+                        Button{
+                            ishownhome.toggle()
+                        } label: {
+                            Image(systemName: "arrow.counterclockwise.circle.fill")
+                            
+                            
+                            
+                        }
+                        .fontWeight(.regular)
+                        .font(.system(size: 40))
+                        .foregroundColor(Color("CusColor"))
+                        
+                        
+                        Button{
+                            didchange.toggle()
+                        } label: {
+                            Image(systemName: "speaker.wave.2.circle.fill")
+                                .onChange(of: didchange) { newValue in
+                                    //synthVM
+                                    synthVM.speak(text: classificationLabel)
+                                }.fontWeight(.regular)
+                                .font(.system(size: 40))
+                                .foregroundColor(Color("CusColor"))
+                            
+                        }
+                    }
+                    HStack{
+                        //voice
+                        
+                        // Translate button: passes input to translation API
+                        Button(action:{
+                            takeInput(text: classificationLabel)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                if !viewModel.input.isEmpty {
+                                    // Calls API translate function to retrieve translation
+                                    ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
+                                        viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        },label: {
+                            
+                            Text("Translate")
+                            
+                        })
+                        .accentColor(.white)
+                        .font(Font.custom("SF Pro", size: 18))
+                        .frame(width: 150 , height: 50)
+                        .background(RoundedRectangle(cornerRadius: 15 ).fill(Color("CusColor")).opacity(1))
+                    }
+                    
+                
+            }
                 .actionSheet(isPresented:$ishownhome ){
                         ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
                             .default(Text("Photo Library")) {
@@ -281,9 +309,12 @@ struct TextRecView: View {
                     }.opacity(isHideText ? 1.0 : 0.0 )
                 
                 HStack{
-                    
+                    Spacer()
                     Text("Translated text:")
-                    Text(classificationLabel)
+                   // Text(classificationLabel)
+                    
+                    Text(viewModel.translation)
+                    Spacer(minLength: 15)
                   
                         
                 }.font(Font.custom("SF Pro", size: 22))
@@ -325,57 +356,57 @@ struct TextRecView: View {
                     //TranslatedView(viewModel: viewModel )
                     ZStack {
                         // Second text field: where translation is displayed
-                        TextField("", text: $viewModel.translation)
-                            .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                            .background(Color.white)
-                            .border(Color(UIColor.systemGray2), width: 1)
-                            .disabled(true)
-                        HStack {
-                            Spacer()
-                            
-                            // Translate button: passes input to translation API
-                            Button(action: {
-                                takeInput(text: classificationLabel)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    if !viewModel.input.isEmpty {
-                                        // Calls API translate function to retrieve translation
-                                        ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
-                                            viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
-                                        }
-                                        
-                                        // Waits 4 seconds after button has been pressed before saving to Core Data
-                                        //                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                                        //                                    if !viewModel.translation.isEmpty {
-                                        //                                        translation.input = viewModel.input
-                                        //                                        translation.translation = viewModel.translation
-                                        ////                                        save(translation: translation)
-                                        //                                    }
-                                        //                                }
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "arrow.right")
-                                    .frame(width: 25, height: 25, alignment: .center)
-                                    .font(.system(size: 15, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .background(Color.blue)
-                                    .clipShape(Circle())
-                                
-                            }).padding(.trailing, 15)
-                        }
-                    }
+//                        TextField("", text: $viewModel.translation)
+//                            .frame(width: screen.width * 0.925, height: screen.height * 0.1, alignment: .top)
+//                            .padding(.horizontal, 20)
+//                            .padding(.vertical, 10)
+//                            .background(Color.white)
+//                            .border(Color(UIColor.systemGray2), width: 1)
+//                            .disabled(true)
+//                        HStack {
+//                            Spacer()
+//                            
+//                            // Translate button: passes input to translation API
+//                            Button(action: {
+//                                takeInput(text: classificationLabel)
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                    if !viewModel.input.isEmpty {
+//                                        // Calls API translate function to retrieve translation
+//                                        ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
+//                                            viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
+//                                        }
+//                                        
+//                                        // Waits 4 seconds after button has been pressed before saving to Core Data
+//                                        //                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//                                        //                                    if !viewModel.translation.isEmpty {
+//                                        //                                        translation.input = viewModel.input
+//                                        //                                        translation.translation = viewModel.translation
+//                                        ////                                        save(translation: translation)
+//                                        //                                    }
+//                                        //                                }
+//                                    }
+//                                }
+//                            }, label: {
+//                                Image(systemName: "arrow.right")
+//                                    .frame(width: 25, height: 25, alignment: .center)
+//                                    .font(.system(size: 15, weight: .bold))
+//                                    .foregroundColor(.white)
+//                                    .background(Color.blue)
+//                                    .clipShape(Circle())
+//                                
+//                            }).padding(.trailing, 15)
+//                        }
+             }
                 }.sheet(isPresented: $isPresented) {
                     // Modal sheet of available languages
                     LanguagesList(viewedLanguages: $viewedLanguages, isPresented: $isPresented)
                 }
       
-            }
+            }.padding(.top, -30)
 
             .navigationBarTitle("Text Recognition")
             
-        }
+        }.padding(.top, -100)
         .sheet(isPresented: $showPhotoOptions) {
             ImagePicker(image: self.$image, isShown: self.$showPhotoOptions, sourceType: self.sourceType)
                 .onDisappear{
