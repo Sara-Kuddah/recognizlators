@@ -26,7 +26,7 @@ enum TabBarItem: CaseIterable {
         switch self {
         case .imageRec:   return "photo"
         case .textRec:     return "doc.plaintext"
-        case .History:   return "clock.arrow.circlepath"
+        case .History:   return "doc.richtext"
  
         }
     }
