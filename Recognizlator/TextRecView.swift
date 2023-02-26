@@ -23,6 +23,7 @@ struct TextRecView: View {
     @State private var swaplang = ""
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var classificationLabel: String = ""
+    var synthVM = SynthViewModel()
     
     private let classifier = VisionClassifier(mlModel: MobileNetV2().model)
     @State var isHideText = false
@@ -165,6 +166,21 @@ struct TextRecView: View {
                     .fontWeight(.regular)
                     .font(.system(size: 40))
                     .foregroundColor(Color("CusColor"))
+                    
+                    
+                    Button{
+                        didchange.toggle()
+                    } label: {
+                        Image(systemName: "speaker.wave.2.circle.fill")
+                        .onChange(of: didchange) { newValue in
+                            //synthVM
+                            synthVM.speak(text: classificationLabel)
+                    }.fontWeight(.regular)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("CusColor"))
+                        
+                    }
+                 
                 }
                     
                 .actionSheet(isPresented:$ishownhome ){
@@ -181,7 +197,7 @@ struct TextRecView: View {
                             },
                             .cancel()
                         ])
-                    }
+                    }.opacity(isHideText ? 1.0 : 0.0 )
                 
                 HStack{
                     
@@ -220,6 +236,8 @@ struct TextRecView: View {
         }
         
     }
+    @State var didchange = false
+    
     func handleData(picture: UIImage?, result: String, translatedText: String) {
         let context = PersistenceController.shared.container.viewContext
         let newHistory = History(context: context)

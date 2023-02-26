@@ -164,7 +164,8 @@ struct ImageRecView: View {
                             .font(.system(size: 40))
                             .foregroundColor(Color("CusColor"))
                         
-                    }.opacity(isHideText ? 1.0 : 0.0 )
+                    }
+                   
                 }
      
                 .actionSheet(isPresented:$ishownhome ){
