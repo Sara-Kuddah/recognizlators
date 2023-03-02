@@ -10,14 +10,14 @@ import Foundation
 
 enum TabBarItem: CaseIterable {
     case imageRec
-    case textRec
+   // case textRec
     case History
    
     
     var title: String {
         switch self {
         case .imageRec:   return NSLocalizedString("Image Rec", comment: "")
-        case .textRec:     return NSLocalizedString("Text Rec", comment: "")
+       // case .textRec:     return NSLocalizedString("Text Rec", comment: "")
         case .History:   return NSLocalizedString("History", comment: "")
         }
     }
@@ -25,7 +25,7 @@ enum TabBarItem: CaseIterable {
     var imageName: String {
         switch self {
         case .imageRec:   return "photo"
-        case .textRec:     return "doc.plaintext"
+       // case .textRec:     return "doc.plaintext"
         case .History:   return "doc.richtext"
  
         }

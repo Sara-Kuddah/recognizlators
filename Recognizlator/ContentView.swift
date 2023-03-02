@@ -19,8 +19,8 @@ struct ContentView: View {
                 switch selectedTab {
                 case .imageRec:
                     ImageRecView(viewModel: ViewModel())
-                case .textRec:
-                    TextRecView(viewModel: ViewModel())
+               // case .textRec:
+              //    TextRecView(viewModel: ViewModel())
                 case .History:
                     HistoryView()
                 }
