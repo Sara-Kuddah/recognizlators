@@ -18,6 +18,7 @@ struct ImageRecView: View {
     @State private var image: UIImage?
     @State private var inputlang = ""
     @State private var sourceType: UIImagePickerController.SourceType = .camera
+    
     @State private var classificationLabel: String = ""
     @State private var count : Int = 0
     
@@ -188,6 +189,7 @@ struct ImageRecView: View {
                             },
                             .default(Text("Camera")) {
                                 // open camera
+                                
                                 self.showPhotoOptions = true
                                 self.sourceType = .camera
                             },
@@ -268,11 +270,13 @@ struct ImageRecView: View {
                                 // open photo library
                                 self.showPhotoOptions = true
                                 self.sourceType = .photoLibrary
+                                
                             },
                             .default(Text("Camera")) {
                                 // open camera
                                 self.showPhotoOptions = true
                                 self.sourceType = .camera
+                                
                             },
                             .cancel()
                         ])

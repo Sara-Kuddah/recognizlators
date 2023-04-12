@@ -156,6 +156,8 @@
 				42D1982029994CCD009880F1 /* ImageRecView.swift */,
 				4263E36729A0E99400ACBC8D /* TextRecView.swift */,
 				42D1982429995608009880F1 /* OnBoardingView.swift */,
+				42D1981C29994548009880F1 /* VisionClassifier.swift */,
+				42D1982229994E8C009880F1 /* ImagePicker.swift */,
 				42F9B149299B6B28001F0134 /* MobileNetV2.mlmodel */,
 				42D197F129993A67009880F1 /* Assets.xcassets */,
 				42D197F629993A67009880F1 /* Persistence.swift */,
@@ -169,8 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				42D197F429993A67009880F1 /* Preview Assets.xcassets */,
-				42D1982229994E8C009880F1 /* ImagePicker.swift */,
-				42D1981C29994548009880F1 /* VisionClassifier.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -475,9 +475,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -529,9 +531,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -547,12 +551,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recognizlator/Preview Content\"";
-				DEVELOPMENT_TEAM = U7539R3954;
+				DEVELOPMENT_TEAM = F3J9926XAP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recognizlator/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "using camera to take a pictrue";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) need camera access to take photo of object from your library for translating it to any language";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) need access to browse and select photo of object from your library for translating it to any language";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "you can view a text transcription of your meeting in the app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -564,7 +570,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sara.Recognizlator;
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sara.Recognizlator-TestRun-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -580,12 +587,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Recognizlator/Preview Content\"";
-				DEVELOPMENT_TEAM = U7539R3954;
+				DEVELOPMENT_TEAM = F3J9926XAP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recognizlator/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "using camera to take a pictrue";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) need camera access to take photo of object from your library for translating it to any language";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) need access to browse and select photo of object from your library for translating it to any language";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "you can view a text transcription of your meeting in the app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -597,7 +606,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sara.Recognizlator;
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sara.Recognizlator-TestRun-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

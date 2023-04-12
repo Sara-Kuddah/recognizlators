@@ -47,11 +47,14 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         self.sourceType = sourceType
     }
     
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         image = uiImage
         isShown = false
+        
         
     }
     
